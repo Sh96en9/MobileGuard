@@ -1,4 +1,4 @@
-package com.me.android.mobileguard.m1home.m2theftguard.dialog.dialog;
+package com.me.android.mobileguard.m2theftguard.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
