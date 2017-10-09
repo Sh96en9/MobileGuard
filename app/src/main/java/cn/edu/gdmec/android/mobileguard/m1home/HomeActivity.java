@@ -1,4 +1,4 @@
-package com.me.android.mobileguard.m1home;
+package cn.edu.gdmec.android.mobileguard.m1home;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,11 +11,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.me.android.mobileguard.R;
-import com.me.android.mobileguard.m1home.Adapter.HomeAdapter;
-import com.me.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
-import com.me.android.mobileguard.m2theftguard.dialog.SetupPasswordDialog;
-import com.me.android.mobileguard.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m1home.Adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetupPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -27,10 +26,10 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(cn.edu.gdmec.android.mobileguard.R.layout.activity_home);
         getSupportActionBar().hide();
         mshardPreferences = getSharedPreferences("config",MODE_PRIVATE);
-        gv_home = (GridView) findViewById(R.id.gv_home);
+        gv_home = (GridView) findViewById(cn.edu.gdmec.android.mobileguard.R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -118,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
             public void confirm() {
                 if(TextUtils.isEmpty(mInPswdDialog.getPassword())){
                     Toast.makeText(HomeActivity.this,"密码不能为空",0).show();
-                }else if(password.equals(com.me.android.mobileguard.m2theftguard.utils.MD5Utils.encode(mInPswdDialog.getPassword()))){
+                }else if(password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))){
                     //进入防盗主界面
                     mInPswdDialog.dismiss();
                     Toast.makeText(HomeActivity.this,"可以进入手机防盗模块",Toast.LENGTH_LONG).show();
@@ -143,7 +142,7 @@ public class HomeActivity extends AppCompatActivity {
     private void savePswd(String affirmPswd){
         SharedPreferences.Editor edit = mshardPreferences.edit();
         //为了防止用户隐私被泄露，因此需要加密码
-        edit.putString("PhoneAntiTheftPWD", com.me.android.mobileguard.m2theftguard.utils.MD5Utils.encode(affirmPswd));
+        edit.putString("PhoneAntiTheftPWD", MD5Utils.encode(affirmPswd));
         edit.commit();
     }
     //获取密码

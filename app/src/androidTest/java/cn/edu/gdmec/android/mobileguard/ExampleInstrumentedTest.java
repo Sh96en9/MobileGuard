@@ -1,4 +1,4 @@
-package com.me.android.mobileguard;
+package cn.edu.gdmec.android.mobileguard;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

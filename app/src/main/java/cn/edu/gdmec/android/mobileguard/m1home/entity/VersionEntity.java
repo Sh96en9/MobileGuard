@@ -1,4 +1,4 @@
-package com.me.android.mobileguard.m1home.entity;
+package cn.edu.gdmec.android.mobileguard.m1home.entity;
 
 public class VersionEntity {
     //服务器版本号

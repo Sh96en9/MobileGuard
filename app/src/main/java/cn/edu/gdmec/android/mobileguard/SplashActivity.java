@@ -1,11 +1,11 @@
-package com.me.android.mobileguard;
+package cn.edu.gdmec.android.mobileguard;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.me.android.mobileguard.m1home.utils.Myutils;
-import com.me.android.mobileguard.m1home.utils.VersionUpdateUtils;
+import cn.edu.gdmec.android.mobileguard.m1home.utils.Myutils;
+import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 
 public class SplashActivity extends AppCompatActivity {
     private TextView mTvTextView;
