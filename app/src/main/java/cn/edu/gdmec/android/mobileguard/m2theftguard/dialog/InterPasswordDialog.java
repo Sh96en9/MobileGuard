@@ -13,7 +13,7 @@ import android.widget.TextView;
 /**
  * Created by asus on 2017/10/1.
  */
-
+//
 public class InterPasswordDialog extends Dialog implements View.OnClickListener {
     //对话框标题
     private TextView mTitleTV;

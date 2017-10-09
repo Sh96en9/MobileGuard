@@ -11,7 +11,7 @@ public class SplashActivity extends AppCompatActivity {
     private TextView mTvTextView;
     private String mVersion;
 
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

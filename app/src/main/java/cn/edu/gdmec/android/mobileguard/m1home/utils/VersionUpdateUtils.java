@@ -23,7 +23,7 @@ import java.io.IOException;
 import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
 import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
 
-
+//
 public class VersionUpdateUtils {
     private String mVersion;
     private Activity context;

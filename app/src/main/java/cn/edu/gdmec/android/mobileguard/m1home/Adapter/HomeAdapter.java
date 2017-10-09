@@ -10,7 +10,7 @@ import android.widget.TextView;
 /**
  * Created by asus on 2017/9/21.
  */
-
+//
 public class HomeAdapter extends BaseAdapter {
     int[] imageId = {cn.edu.gdmec.android.mobileguard.R.drawable.safe, cn.edu.gdmec.android.mobileguard.R.drawable.callmsgsafe, cn.edu.gdmec.android.mobileguard.R.drawable.app, cn.edu.gdmec.android.mobileguard.R.drawable.trojan,
             cn.edu.gdmec.android.mobileguard.R.drawable.sysoptimize, cn.edu.gdmec.android.mobileguard.R.drawable.taskmanager, cn.edu.gdmec.android.mobileguard.R.drawable.netmanager, cn.edu.gdmec.android.mobileguard.R.drawable.atools,

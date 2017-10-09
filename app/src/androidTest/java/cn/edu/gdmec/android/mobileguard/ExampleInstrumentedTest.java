@@ -24,3 +24,4 @@ public class ExampleInstrumentedTest {
         assertEquals("com.me.android.mobileguard", appContext.getPackageName());
     }
 }
+//
