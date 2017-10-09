@@ -16,7 +16,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetupPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
-
+  
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
     private long mExitTime;

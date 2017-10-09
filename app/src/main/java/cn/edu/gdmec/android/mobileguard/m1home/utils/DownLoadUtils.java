@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.webkit.MimeTypeMap;
 
-
 class DownLoadUtils {
     /**
      * Access can be package-private 所以可以省略接口的public声明
