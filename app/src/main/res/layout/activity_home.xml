@@ -9,7 +9,6 @@
     android:gravity="center"
     android:background="@drawable/bg_home"
     tools:context="cn.edu.gdmec.android.mobileguard.m1home.HomeActivity">
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

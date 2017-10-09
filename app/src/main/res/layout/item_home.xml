@@ -16,5 +16,4 @@
         android:text="高级工具"
         android:textColor="#80000000"
         android:textSize="18sp"/>
-
 </LinearLayout>

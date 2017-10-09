@@ -17,5 +17,4 @@
         android:id="@+id/tv_splash_version"
         android:layout_below="@id/pb_plash_loading"
         android:layout_centerHorizontal="true"/>
-
 </RelativeLayout>

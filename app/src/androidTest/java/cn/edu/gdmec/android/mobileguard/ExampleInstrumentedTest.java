@@ -21,7 +21,7 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.me.android.mobileguard", appContext.getPackageName());
+        assertEquals("cn.edu.gdmec.android.mobileguard", appContext.getPackageName());
     }
 }
 //
