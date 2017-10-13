@@ -9,6 +9,7 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="cn.edu.gdmec.android.mobileguard.SplashActivity">
@@ -18,10 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="cn.edu.gdmec.android.mobileguard.m1home.HomeActivity">
-        </activity>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m1home.HomeActivity"/>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity"/>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.Setup1Activity"/>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.Setup2Activity"/>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.Setup3Activity"/>
+        <activity android:name="cn.edu.gdmec.android.mobileguard.m2theftguard.Setup4Activity"/>
+
+
     </application>
-//
+
 
 
 
