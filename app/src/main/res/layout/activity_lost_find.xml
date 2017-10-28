@@ -37,6 +37,7 @@
         android:layout_height="50dp">
         
         <TextView
+            android:id="@+id/tv_lostfind_protectstaus"
             style="@style/textview16sp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
