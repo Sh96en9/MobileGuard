@@ -15,6 +15,8 @@
         android:background="@drawable/contact_icon"/>
     
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_name"
         style="@style/textview16sp"
         android:layout_alignTop="@id/view1"
@@ -22,11 +24,23 @@
         android:textColor="@color/purple"/>
     
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_phone"
         style="@style/textview14sp"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/view1"
         android:layout_below="@id/tv_name"
+        android:textColor="@color/purple"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_type"
+        style="@style/textview14sp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/view1"
+        android:layout_below="@id/tv_phone"
         android:textColor="@color/purple"/>
 
 

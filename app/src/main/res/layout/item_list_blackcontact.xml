@@ -13,16 +13,30 @@
         android:background="@drawable/brightpurple_contact_icon"/>
     
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_black_name"
         style="@style/textview14sp"
         android:layout_alignTop="@+id/view_black_icon"
         android:layout_toRightOf="@id/view_black_icon"
         android:textColor="@color/purple"/>
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/tv_black_mode"
         style="@style/textview14sp"
         android:layout_toRightOf="@id/view_black_icon"
         android:layout_below="@+id/tv_black_name"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/purple"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_black_type"
+        style="@style/textview14sp"
+        android:layout_toRightOf="@id/view_black_icon"
+        android:layout_below="@+id/tv_black_mode"
         android:layout_marginTop="10dp"
         android:textColor="@color/purple"/>
 

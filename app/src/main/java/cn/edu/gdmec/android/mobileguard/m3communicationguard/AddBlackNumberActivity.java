@@ -1,8 +1,8 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
@@ -21,6 +21,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
     private CheckBox mTelCB;
     private EditText mNumET;
     private EditText mNameET;
+    private EditText mTypeET;
     private BlackNumberDao dao;
 
     private void initView(){
@@ -34,6 +35,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
         mTelCB = (CheckBox)findViewById(R.id.cb_blacknumber_tel);
         mNumET = (EditText)findViewById(R.id.et_blacknumber);
         mNameET = (EditText)findViewById(R.id.et_blackname);
+        mTypeET = (EditText)findViewById(R.id.et_blacktype);
         findViewById(R.id.add_blacknum_btn).setOnClickListener(this);
         findViewById(R.id.add_fromcontact_btn).setOnClickListener(this);
     }
@@ -44,9 +46,11 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
         if (data!=null){
             //获取联系人信息
             String phone = data.getStringExtra("phone");
+            String type = data.getStringExtra("type");
             String name = data.getStringExtra("name");
             mNameET.setText(name);
             mNumET.setText(phone);
+            mTypeET.setText(type);
         }
     }
 
@@ -70,6 +74,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
             case R.id.add_blacknum_btn:
                 String number = mNumET.getText().toString().trim();
                 String name = mNameET.getText().toString().trim();
+                String type = mTypeET.getText().toString().trim();
                 if (TextUtils.isEmpty(number) || TextUtils.isEmpty(name)){
                     Toast.makeText(this,"电话号码和手机号不能为空!",Toast.LENGTH_LONG).show();
                     return;
@@ -78,6 +83,7 @@ public class AddBlackNumberActivity extends AppCompatActivity implements View.On
                     BlackContactInfo blackContactInfo = new BlackContactInfo();
                     blackContactInfo.phoneNumber =number;
                     blackContactInfo.contactName = name;
+                    blackContactInfo.Itype = type;
                     if (mSmsCB.isChecked()&mTelCB.isChecked()){
                         //两种拦截模式都选
                         blackContactInfo.mode=3;

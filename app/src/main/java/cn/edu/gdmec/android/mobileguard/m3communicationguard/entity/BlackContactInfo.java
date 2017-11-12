@@ -12,6 +12,8 @@ public class BlackContactInfo {
     //黑名单拦截模式
     public int mode;
 
+    public String Itype;
+
     public String getModeString(int mode){
         switch (mode){
             case 1:

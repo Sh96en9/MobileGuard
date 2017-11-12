@@ -4,8 +4,8 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+
+import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m1home.Adapter.HomeAdapter;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
@@ -20,176 +22,191 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetupPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
+import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 
-//
 public class HomeActivity extends AppCompatActivity {
     private GridView gv_home;
     private long mExitTime;
-    //存储手机防盗密码的sp
-    private SharedPreferences mshardPreferences;
-      private DevicePolicyManager policyManager;
-      private ComponentName componentName;
+    /**存储手机防盗密码的sp  */
+    private SharedPreferences msharedPreferences;
+    /**设备管理员*/
+    private DevicePolicyManager policyManager;
+    /**申请权限*/
+    private ComponentName componentName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(cn.edu.gdmec.android.mobileguard.R.layout.activity_home);
+        setContentView(R.layout.activity_home);
         getSupportActionBar().hide();
-        mshardPreferences = getSharedPreferences("config",MODE_PRIVATE);
-        gv_home = (GridView) findViewById(cn.edu.gdmec.android.mobileguard.R.id.gv_home);
+        //第一个参数是存储时的名称，第二个参数则是文件的打开方式
+        msharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
+        gv_home = (GridView) findViewById(R.id.gv_home);
         gv_home.setAdapter(new HomeAdapter(HomeActivity.this));
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0://点击手机防盗
-                        if (isSetupPassword()){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0: //点击手机防盗
+                        if(isSetUpPassword()){
                             //弹出输入密码对话框
-                            showInterPswdDialog();
-
+                            showInterPwdDialog();
                         }else{
                             //弹出设置密码对话框
-                            showSetUpPswdDialog();
+                            showSetUpPwdDialog();
                         }
                         break;
-                    case 1://点击通讯卫士
+                    case 1:
                         startActivity(SecurityPhoneActivity.class);
                         break;
-
+                    case 2:
+                        startActivity(AppManagerActivity.class);
+                        break;
                 }
             }
         });
-        //1.获取设备管理员
-        policyManager = (DevicePolicyManager)getSystemService(DEVICE_POLICY_SERVICE);//本行代码需要"手机防盗模块完成后才能启用"
-        //2.申请权限,MyDeviceAdminReciever继承自DeviceAdminRecieve
+        //1、获取设备管理员
+        policyManager = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
+        //2、申请权限 MyDeviceAdminReceiver继承自DeviceAdminReceiver
         componentName = new ComponentName(this, MyDeviceAdminReceiver.class);
-        //3.判断,如果没有权限则申请权限
+        //3、判断，如果没有权限则申请权限
         boolean active = policyManager.isAdminActive(componentName);
         if(!active){
-            //没有管理员权限,则获取管理员权限
+            //没有管理员权限，则获取管理员权限
             Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN,componentName);
-            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,"获取超级管理员权限,用于远程锁屏和清除数据");
+            intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN , componentName);
+            intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION , "获取超级管理员权限，用于远程锁屏和清除数据");
             startActivity(intent);
         }
+
+
     }
 
-    public void startActivity(Class<?>cls){
+    public void startActivity(Class<?> cls){
         Intent intent = new Intent(HomeActivity.this,cls);
         startActivity(intent);
     }
+
     @Override
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        if (keyCode==KeyEvent.KEYCODE_BACK){
-            if ((System.currentTimeMillis()-mExitTime)<2000){
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK)
+        {
+            if((System.currentTimeMillis()-mExitTime)<2000)
+            {
                 System.exit(0);
-           }else{
-                Toast.makeText(this,"再一次退出程序",Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_LONG).show();
                 mExitTime = System.currentTimeMillis();
             }
             return true;
         }
-        return super.onKeyDown(keyCode,event);
+        return super.onKeyDown(keyCode, event);
     }
-
     /**
-     * 弹出设置密码框 本方法需要完成“手机防盗模块”之后才能使用
+     *弹出设置密码对话框  本方法需要完成“手机防盗模块才能启用”
      */
+    private void showSetUpPwdDialog(){
+        final SetupPasswordDialog setupPasswordDialog = new SetupPasswordDialog(
+                HomeActivity.this);
+        setupPasswordDialog
+                .setCallBack(new SetupPasswordDialog.MyCallBack(){
 
-    private void showSetUpPswdDialog(){
-        final SetupPasswordDialog setupPasswordDialog = new SetupPasswordDialog(HomeActivity.this);
-        setupPasswordDialog.setCallBack(new SetupPasswordDialog.MyCallBack() {
-            @Override
-            public void ok() {
-                String firstPwsd = setupPasswordDialog.mFirstPWDET.getText().toString().trim();
-                String affirmPwsd = setupPasswordDialog.mAffirmET.getText().toString().trim();
-                if (!TextUtils.isEmpty(firstPwsd)&&!TextUtils.isEmpty(affirmPwsd)){
-                    if (firstPwsd.equals(affirmPwsd)){
-                        //两次密码一致，存储密码
-                        savePswd(affirmPwsd);
-                        setupPasswordDialog.dismiss();
-                        //显示输入密码对话框
-                        showInterPswdDialog();
-                    }else{
-                        Toast.makeText(HomeActivity.this,"两次密码不一致",Toast.LENGTH_LONG).show();
+                    @Override
+                    public void ok() {
+                        String firstPwd = setupPasswordDialog.mFirstPWDET
+                                .getText().toString().trim();
+                        String affirmPwd = setupPasswordDialog.mAffirmET
+                                .getText().toString().trim();
+                        if(!TextUtils.isEmpty(firstPwd)
+                                && !TextUtils.isEmpty(affirmPwd)){
+                            if(firstPwd.equals(affirmPwd)){
+                                //两次密码一致，存储密码
+                                savePwd(affirmPwd);
+                                setupPasswordDialog.dismiss();
+                                showInterPwdDialog();
+                            }else{
+                                Toast.makeText(HomeActivity.this, "两次密码不一致", Toast.LENGTH_LONG).show();
+                            }
+                        }else{
+                            Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_LONG).show();
+                        }
                     }
 
-                }else {
-                    Toast.makeText(HomeActivity.this,"密码不能为空",Toast.LENGTH_LONG).show();
-                }
-
-            }
-
-            @Override
-            public void cancel() {
-                setupPasswordDialog.dismiss();
-
-            }
-        });
+                    @Override
+                    public void cancel() {
+                        setupPasswordDialog.dismiss();
+                    }
+                });
         setupPasswordDialog.setCancelable(true);
         setupPasswordDialog.show();
-
     }
+
     /**
-     * 弹出设置密码框 本方法需要完成“手机防盗模块”之后才能使用
+     * 弹出输入密码对话框   本方法需要完成“手机防盗模块”之后才能启用
      */
-    private void showInterPswdDialog(){
+    private void showInterPwdDialog(){
         final String password = getPassword();
-        final InterPasswordDialog mInPswdDialog = new InterPasswordDialog(HomeActivity.this);
-        mInPswdDialog.setCallBack(new InterPasswordDialog.MyCallBack() {
+        final InterPasswordDialog interPasswordDialog = new InterPasswordDialog(
+                HomeActivity.this);
+        interPasswordDialog.setCallBack(new InterPasswordDialog.MyCallBack() {
             @Override
             public void confirm() {
-                if(TextUtils.isEmpty(mInPswdDialog.getPassword())){
-                    Toast.makeText(HomeActivity.this,"密码不能为空",Toast.LENGTH_LONG).show();
-                }else if(password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))){
-                    //进入防盗主界面
-                    mInPswdDialog.dismiss();
+                if (TextUtils.isEmpty(interPasswordDialog.getPassword())){
+                    Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_LONG).show();
+                }else if (password.equals(MD5Utils.encode(interPasswordDialog
+                        .getPassword()))){
+                    //进入防盗页面
+                    interPasswordDialog.dismiss();
                     startActivity(LostFindActivity.class);
-                    Toast.makeText(HomeActivity.this,"可以进入手机防盗模块",Toast.LENGTH_LONG).show();
-                }else {
-                    //对话消失，弹出土司
-                    mInPswdDialog.dismiss();
-                    Toast.makeText(HomeActivity.this,"密码有误，请重新输入",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(HomeActivity.this, "可以进入手机防盗模块", Toast.LENGTH_LONG).show();
+                }else{
+                    //对话框消失，弹出土司
+                    interPasswordDialog.dismiss();
+                    Toast.makeText(HomeActivity.this, "密码有误，请重新输入!", Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
-            public void cancle() {mInPswdDialog.dismiss();
-
+            public void cancle() {
+                interPasswordDialog.dismiss();
             }
         });
-        mInPswdDialog.setCancelable(true);
+        interPasswordDialog.setCancelable(true);
         //让对话框显示
-        mInPswdDialog.show();
+        interPasswordDialog.show();
     }
 
 
-    private void savePswd(String affirmPswd){
-        SharedPreferences.Editor edit = mshardPreferences.edit();
-        //为了防止用户隐私被泄露，因此需要加密码
-        edit.putString("PhoneAntiTheftPWD", MD5Utils.encode(affirmPswd));
+    /**
+     * 保存密码   本方法需要完成“手机防盗模块”之后才能启用
+     */
+    private void savePwd(String affirmPwd){
+        SharedPreferences.Editor edit =  msharedPreferences.edit();
+        //为了防止用户隐私被泄漏,因此需要加密密码
+        edit.putString("PhoneAntiTheftPWD",MD5Utils.encode(affirmPwd));
         edit.commit();
     }
-    //获取密码
-    //@return sp存储的密码
 
+    /**
+     * 获取密码
+     *
+     * return sp存储的密码
+     */
     private String getPassword(){
-        String password = mshardPreferences.getString("PhoneAntiTheftPWD",null);
+        String password = msharedPreferences.getString("PhoneAntiTheftPWD",null);
         if (TextUtils.isEmpty(password)){
             return "";
         }
         return password;
     }
-    //判断用户是否设置过手机密码
-    private  boolean isSetupPassword(){
-        String password = mshardPreferences.getString("PhoneAntiTheftPWD",null);
+
+    /**
+     * 判断用户是否设置手机防盗密码
+     */
+    private boolean isSetUpPassword(){
+        String password = msharedPreferences.getString("PhoneAntiTheftPWD",null);
         if (TextUtils.isEmpty(password)){
             return false;
         }
         return true;
     }
-
-
-
-
 }
