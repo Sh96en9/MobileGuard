@@ -97,5 +97,23 @@ public class EngineUtils {
         dialog.show();
 
     }
+    //点击［活动］可以弹出一个对话框，显示每一个
+    public static void ActivityMessage(Context context,AppInfo appInfo){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("MobileGuard");
+        builder.setMessage("Activities:" +appInfo.appActivity+ "\n");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case AlertDialog.BUTTON_POSITIVE:
+                        break;
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 
 }
