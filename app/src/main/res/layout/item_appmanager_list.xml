@@ -127,7 +127,7 @@
             android:id="@+id/tv_about_activity"
             style="@style/tvyellow14sp"
             android:drawableTop="@drawable/activityicon_yellow_n"
-            android:text="关于"/>
+            android:text="活动"/>
 
     </LinearLayout>
 
