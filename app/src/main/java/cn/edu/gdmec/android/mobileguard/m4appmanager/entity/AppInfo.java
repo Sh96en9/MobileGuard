@@ -1,7 +1,5 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.entity;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -37,6 +35,7 @@ public class AppInfo {
     public String appPermissions;
     //app活动
     public String appActivity;
+
 
     /** 拿到App位置字符串 */
     public String getAppLocation(boolean isInRoom){
