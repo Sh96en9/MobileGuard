@@ -1,7 +1,7 @@
 package cn.edu.gdmec.android.mobileguard.m6cleancache;
 
 import android.content.Intent;
-import android.content.pm.IpackageDataObserver;
+import android.content.pm.IPackageDataObserver;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -24,7 +24,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 
 public class CleanCacheActivity extends AppCompatActivity implements View.OnClickListener {
     protected static final int CLEANNING = 100;
-    protected static final int CLEAN_FINISH = 101;
+    protected static final int CLEAN_FINISH = 10;
     private AnimationDrawable animation;
     private long cacheMemory;
     private TextView mMemoryTV;
@@ -35,7 +35,7 @@ public class CleanCacheActivity extends AppCompatActivity implements View.OnClic
     private TextView mSizeTV;
 
     private Handler mHandler = new Handler(){
-        public void handlerMessage(android.os.Message msg){
+        public void handleMessage(android.os.Message msg){
             switch (msg.what){
                case CLEANNING:
                     long memory = (Long) msg.obj;
@@ -138,7 +138,7 @@ public class CleanCacheActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-    class CleanCacheObserve extends IpackageDataObserver.Stub{
+    class CleanCacheObserve extends IPackageDataObserver.Stub{
         public void onRemoveCompleted(final String packageName,
                                       final boolean succeeded){
         }

@@ -1,7 +1,7 @@
 package cn.edu.gdmec.android.mobileguard.m6cleancache;
 
 import android.content.Intent;
-import android.content.pm.IpackageStatsObserver;
+import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageStats;
@@ -108,7 +108,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
             public void run(){
                 //遍历手机里面的所有的应用程序
                 cacheInfos.clear();
-                List<PackageInfo>infos = pm.getInstalledPackages(0);
+                List<PackageInfo> infos = pm.getInstalledPackages(0);
                 for(PackageInfo info:infos){
                     getCacheSize(info);
                     try {
@@ -136,14 +136,16 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
     public void getCacheSize(PackageInfo info){
         try {
             Method method = PackageManager.class.getDeclaredMethod(
-                    "getPackageSizeInfo", String.class, IpackageStatsObserver.class);
+                    "getPackageSizeInfo", String.class,
+                    IPackageStatsObserver.class);
             method.invoke(pm,info.packageName,new MyPackObserve(info));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private class MyPackObserve extends IpackageStatsObserver.Stub{
+    private class MyPackObserve extends
+            android.content.pm.IPackageStatsObserver.Stub{
         private PackageInfo info;
 
         public MyPackObserve(PackageInfo info){
@@ -152,7 +154,8 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
         }
 
         @Override
-        public void onGetStatsCompleted(PackageStats pStats, boolean succeeded) throws RemoteException {
+        public void onGetStatsCompleted(PackageStats pStats, boolean succeeded)
+                throws RemoteException {
             long cachesize = pStats.cacheSize;
             if (cachesize>=0){
                 CacheInfo cacheInfo = new CacheInfo();
@@ -161,7 +164,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
                 cacheInfo.appName = info.applicationInfo.loadLabel(pm).toString();
                 cacheInfo.appIcon = info.applicationInfo.loadIcon(pm);
                 cacheInfos.add(cacheInfo);
-                cacheMemory+=cachesize;
+                cacheMemory += cachesize;
             }
 
         }

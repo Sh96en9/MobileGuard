@@ -18,8 +18,9 @@
     <!-- 手机杀毒部分 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!--清理缓存部分-->
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
     <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
+
 
     <application
         android:name=".App"

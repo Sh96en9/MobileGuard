@@ -1,7 +1,7 @@
 // IPackageDataObserver.aidl
 package android.content.pm;
 
-oneway interface IpackageDataObserver{
+oneway interface IPackageDataObserver{
     void onRemoveCompleted(in String packageName,boolean succeeded);
 }
 // Declare any non-default types here with import statements
