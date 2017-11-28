@@ -22,14 +22,15 @@ public class SplashActivity extends AppCompatActivity {
         mVersion = Myutils.getVersion(getApplicationContext());
         mTvTextView = (TextView)findViewById(R.id.tv_splash_version);
         mTvTextView.setText("版本号"+mVersion);
-        final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
+        /*final VersionUpdateUtils versionUpdateUtils = new VersionUpdateUtils(mVersion,SplashActivity.this);
         new Thread(){
             @Override
             public void run(){
                 super.run();
                 versionUpdateUtils.getCloudVersion();
             }
-        }.start();
+        }.start();*/
         startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 }
