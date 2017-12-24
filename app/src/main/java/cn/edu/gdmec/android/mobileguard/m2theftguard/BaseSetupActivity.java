@@ -74,7 +74,7 @@ public abstract class BaseSetupActivity extends AppCompatActivity {
                             R.anim.next_out);
                     return true;
                 }
-                return super.onFling(e1,e2,velocityX,velocityX);
+                return super.onFling(e1,e2,velocityX,velocityY);
 
             }
         });

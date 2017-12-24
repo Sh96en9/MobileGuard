@@ -12,6 +12,8 @@
 
         <TextView
             style="@style/textview16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
@@ -21,6 +23,8 @@
         <TextView
             android:id="@+id/tv_safephone"
             style="@style/textview16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
@@ -39,6 +43,8 @@
         <TextView
             android:id="@+id/tv_lostfind_protectstaus"
             style="@style/textview16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
@@ -70,6 +76,8 @@
         
         <TextView
             style="@style/textview16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
@@ -114,6 +122,8 @@
 
             <TextView
                 style="@style/textview16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:text="#*alarm*#"
@@ -121,6 +131,8 @@
             
             <TextView
                 style="@style/textview16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
@@ -136,6 +148,8 @@
             android:layout_marginTop="15dp">
             
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 style="@style/textview16sp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
@@ -144,6 +158,8 @@
 
             <TextView
                 style="@style/textview16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
@@ -160,6 +176,8 @@
 
             <TextView
                 style="@style/textview16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:text="#*lockScreen*#"
@@ -167,6 +185,8 @@
 
             <TextView
                 style="@style/textview16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
@@ -183,6 +203,8 @@
 
             <TextView
                 style="@style/textview16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
                 android:text="#*wipedata*#"
@@ -193,6 +215,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/delete_data_small"
                 android:drawablePadding="5dp"
                 android:text="远程删除数据"
